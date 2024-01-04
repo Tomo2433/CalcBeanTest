@@ -106,6 +106,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -123,60 +126,102 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="calculatorBean2" min="-2" max="-2" attributes="0"/>
+              <Component id="calculatorBean2" min="-2" pref="278" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSpinner2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jTextField2" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSpinner4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="107" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jSlider1" min="-2" pref="191" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jSpinner3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="jSlider1" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSpinner4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="calculatorBean2" min="-2" pref="268" max="-2" attributes="0"/>
+                  <Component id="calculatorBean2" min="-2" pref="271" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,44 +229,42 @@
   <SubComponents>
     <Component class="calculatorbean.CalculatorBean" name="calculatorBean2">
       <Properties>
-        <Property name="buttonBackgroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="0" type="rgb"/>
+        <Property name="buttonBackgroundColor" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="buttonBackgroundColor" type="property"/>
         </Property>
-        <Property name="buttonFontSize" type="int" value="16"/>
+        <Property name="buttonForegroundColor" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="buttonForegroundColor" type="property"/>
+        </Property>
+        <Property name="defaultColor" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="defaultColor" type="property"/>
+        </Property>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="12" style="2"/>
+        </Property>
+        <Property name="minusColor" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="minusColor" type="property"/>
+        </Property>
+        <Property name="plusColor" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="plusColor" type="property"/>
+        </Property>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="if(readObject != null) {&#xa;calculatorBean2 = readObject;&#xa;calculatorBean2.updateButtonListeners();&#xa;} else {"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="CalcFrame_calculatorBean2"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>
-        <Property name="selected" type="boolean" value="true"/>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="isSoundOn" type="property"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sound"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JSlider" name="jSlider1">
-      <Properties>
-        <Property name="maximum" type="int" value="10"/>
-        <Property name="minorTickSpacing" type="int" value="1"/>
-        <Property name="paintLabels" type="boolean" value="true"/>
-        <Property name="paintTicks" type="boolean" value="true"/>
-        <Property name="snapToTicks" type="boolean" value="true"/>
-        <Property name="toolTipText" type="java.lang.String" value="Precyzja"/>
-        <Property name="value" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection component="calculatorBean2" name="precision" type="property"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Precyzja"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinner1">
       <Properties>
@@ -232,15 +275,10 @@
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinner1StateChanged"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="String.valueOf(jSlider1.getValue())&#xd;&#xa;" type="code"/>
-        </Property>
-        <Property name="enabled" type="boolean" value="false"/>
-        <Property name="focusable" type="boolean" value="false"/>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JSpinner(spinnerModel);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="int minValue = 0;&#xd;&#xa;int maxValue = 100;&#xd;&#xa;int initialValue = 50;&#xd;&#xa;SpinnerNumberModel spinnerModel = new SpinnerNumberModel(initialValue, minValue, maxValue, 1);&#xd;&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -262,6 +300,110 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Tahoma"/>
+            <StringItem index="1" value="Georgia"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox1ItemStateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Font przycisk&#xf3;w"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner2">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinner2StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JSpinner(spinnerModel2);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="int minValue2 = 0;&#xd;&#xa;int maxValue2 = 50;&#xd;&#xa;int initialValue2 = 10;&#xd;&#xa;&#xd;&#xa;SpinnerNumberModel spinnerModel2 = new SpinnerNumberModel(initialValue2, minValue2, maxValue2, 1);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="max ilo&#x15b;&#x107; cyfr warto&#x15b;ci wej&#x15b;ciowej"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField2">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="welcomeMessage" type="property"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ustaw wiadomo&#x15b;&#x107; powitaln&#x105;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox2">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Segoe Print"/>
+            <StringItem index="1" value="Lucida Console"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox2ItemStateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Font wy&#x15b;wietlacza"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="wielko&#x15b;&#x107; czcionki wy&#x15b;wietlacza"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner4">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinner4StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JSpinner(spinnerModel3);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="int minValue3 = 0;&#xd;&#xa;int maxValue3 = 100;&#xd;&#xa;int initialValue3 = (int)calculatorBean2.getDisplayFontSize();&#xd;&#xa;SpinnerNumberModel spinnerModel3 = new SpinnerNumberModel(initialValue3, minValue3, maxValue3, 1);&#xd;&#xa;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner3">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="calculatorBean2" name="getPrecision" type="method"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinner3StateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JSpinner(spinnerModel4);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="int minValue4 = 0;&#xd;&#xa;int maxValue4 = 100;&#xd;&#xa;int initialValue4 = 50;&#xd;&#xa;SpinnerNumberModel spinnerModel4 = new SpinnerNumberModel(initialValue4, minValue4, maxValue4, 1);&#xd;&#xa;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Precyzja wyniku"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

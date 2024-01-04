@@ -4,21 +4,35 @@
  */
 package calcbeantest;
 
-import java.util.Set;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 /**
  *
  * @author TOMEK
  */
 public class CalcFrame extends javax.swing.JFrame {
     private String choosedFile;
+    private calculatorbean.CalculatorBean readObject;
     /**
      * Creates new form CalcFrame
      */
     public CalcFrame() {
+        // Odczyt obiektu z pliku
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("calculatorBean.ser"))) {
+            readObject = (calculatorbean.CalculatorBean) ois.readObject();
+            System.out.println("Odczytano obiekt: " + readObject);
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         initComponents();
+        
+        if(jCheckBox1.isSelected()) calculatorBean2.setIsSoundOn(jCheckBox1.isSelected());
     }
 
     /**
@@ -36,15 +50,46 @@ public class CalcFrame extends javax.swing.JFrame {
         jDialog2 = new javax.swing.JDialog();
         jColorChooser2 = new javax.swing.JColorChooser();
         jButton4 = new javax.swing.JButton();
-        calculatorBean2 = new calculatorbean.CalculatorBean();
+        if(readObject != null) {
+            calculatorBean2 = readObject;
+            calculatorBean2.updateButtonListeners();
+        } else {
+            calculatorBean2 = new calculatorbean.CalculatorBean();
+        }
         jCheckBox1 = new javax.swing.JCheckBox();
-        jSlider1 = new javax.swing.JSlider();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jTextField1 = new javax.swing.JTextField();
+        int minValue = 0;
+        int maxValue = 100;
+        int initialValue = 50;
+        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(initialValue, minValue, maxValue, 1);
+        jSpinner1 = new JSpinner(spinnerModel);
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        int minValue2 = 0;
+        int maxValue2 = 50;
+        int initialValue2 = 10;
+
+        SpinnerNumberModel spinnerModel2 = new SpinnerNumberModel(initialValue2, minValue2, maxValue2, 1);
+        jSpinner2 = new JSpinner(spinnerModel2);
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        int minValue3 = 0;
+        int maxValue3 = 100;
+        int initialValue3 = (int)calculatorBean2.getDisplayFontSize();
+        SpinnerNumberModel spinnerModel3 = new SpinnerNumberModel(initialValue3, minValue3, maxValue3, 1);
+        jSpinner4 = new JSpinner(spinnerModel3);
+        int minValue4 = 0;
+        int maxValue4 = 100;
+        int initialValue4 = 50;
+        SpinnerNumberModel spinnerModel4 = new SpinnerNumberModel(initialValue4, minValue4, maxValue4, 1);
+        jSpinner3 = new JSpinner(spinnerModel4);
+        jLabel1 = new javax.swing.JLabel();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(723, 431));
 
@@ -111,11 +156,21 @@ public class CalcFrame extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        calculatorBean2.setButtonBackgroundColor(new java.awt.Color(0, 255, 255));
-        calculatorBean2.setButtonFontSize(16);
+        calculatorBean2.setButtonBackgroundColor(calculatorBean2.getButtonBackgroundColor());
+        calculatorBean2.setButtonForegroundColor(calculatorBean2.getButtonForegroundColor());
+        calculatorBean2.setDefaultColor(calculatorBean2.getDefaultColor());
+        calculatorBean2.setFocusable(false);
+        calculatorBean2.setFont(new java.awt.Font("Georgia", 2, 12)); // NOI18N
+        calculatorBean2.setMinusColor(calculatorBean2.getMinusColor());
+        calculatorBean2.setPlusColor(calculatorBean2.getPlusColor());
 
-        jCheckBox1.setSelected(true);
+        jCheckBox1.setSelected(calculatorBean2.getIsSoundOn());
         jCheckBox1.setText("Sound");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,32 +178,12 @@ public class CalcFrame extends javax.swing.JFrame {
             }
         });
 
-        jSlider1.setMaximum(10);
-        jSlider1.setMinorTickSpacing(1);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setSnapToTicks(true);
-        jSlider1.setToolTipText("Precyzja");
-        jSlider1.setValue(calculatorBean2.getPrecision());
-        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSlider1StateChanged(evt);
-            }
-        });
-
-        jLabel1.setText("Precyzja");
-
         jSpinner1.setValue(calculatorBean2.getButtonFontSize());
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner1StateChanged(evt);
             }
         });
-
-        jTextField1.setText(String.valueOf(jSlider1.getValue())
-        );
-        jTextField1.setEnabled(false);
-        jTextField1.setFocusable(false);
 
         jLabel2.setText("wielość czcionki przycisków");
 
@@ -166,56 +201,141 @@ public class CalcFrame extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tahoma", "Georgia" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+
+        jLabel3.setText("Font przycisków");
+
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("max ilość cyfr wartości wejściowej");
+
+        jTextField2.setText(calculatorBean2.getWelcomeMessage());
+
+        jButton5.setText("Ustaw wiadomość powitalną");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Segoe Print", "Lucida Console" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
+
+        jLabel5.setText("Font wyświetlacza");
+
+        jLabel6.setText("wielkość czcionki wyświetlacza");
+
+        jSpinner4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner4StateChanged(evt);
+            }
+        });
+
+        jSpinner3.setValue(calculatorBean2.getPrecision());
+        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner3StateChanged(evt);
+            }
+        });
+
+        jLabel1.setText("Precyzja wyniku");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(calculatorBean2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(calculatorBean2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1)
+                    .addComponent(jCheckBox1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
-                    .addComponent(calculatorBean2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 35, Short.MAX_VALUE))
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(calculatorBean2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,15 +346,9 @@ public class CalcFrame extends javax.swing.JFrame {
         calculatorBean2.setIsSoundOn(jCheckBox1.isSelected());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        // TODO add your handling code here:
-        calculatorBean2.setPrecision(jSlider1.getValue());
-        jTextField1.setText(String.valueOf(jSlider1.getValue()));
-    }//GEN-LAST:event_jSlider1StateChanged
-
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         // TODO add your handling code here:
-        calculatorBean2.setButtonFontSize((int) jSpinner1.getValue());
+        calculatorBean2.setButtonFontSize((Integer) jSpinner1.getValue());
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -258,6 +372,41 @@ public class CalcFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDialog2.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        calculatorBean2.setButtonFont(jComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        // TODO add your handling code here:
+        calculatorBean2.setMaxInputLength((Integer)jSpinner2.getValue());
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        calculatorBean2.setWelcomeMessage(jTextField2.getText());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        // TODO add your handling code here:
+        calculatorBean2.setDisplayFont(jComboBox2.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
+        // TODO add your handling code here:
+        calculatorBean2.setDisplayFontSize((Integer) jSpinner4.getValue());
+    }//GEN-LAST:event_jSpinner4StateChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        saveObject();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+        // TODO add your handling code here:
+        calculatorBean2.setPrecision((Integer)jSpinner3.getValue());
+    }//GEN-LAST:event_jSpinner3StateChanged
                                        
 
     /**
@@ -292,7 +441,21 @@ public class CalcFrame extends javax.swing.JFrame {
                 new CalcFrame().setVisible(true);
             }
         });
+        
+
     }
+    
+    private void saveObject() {
+        // Tutaj umieść kod zapisu obiektu do pliku
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("calculatorBean.ser"))) {
+            // Zapisujemy obiekt do pliku
+            oos.writeObject(calculatorBean2);
+            System.out.println("Obiekt zapisany pomyślnie.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private calculatorbean.CalculatorBean calculatorBean2;
@@ -300,15 +463,24 @@ public class CalcFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JColorChooser jColorChooser2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSlider jSlider1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JSpinner jSpinner4;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
